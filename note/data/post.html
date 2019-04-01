@@ -57,8 +57,6 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="koa-body.html" />
-    
     
     <link rel="prev" href="get.html" />
     
@@ -238,19 +236,6 @@
             
                     
                     3.2 POST
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="koa-body.html">
-            
-                <a href="koa-body.html">
-            
-                    
-                    3.3 koa-body
             
                 </a>
             
@@ -521,6 +506,34 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="32-post">3.2 POST</h1>
+<p>koa &#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x63D0;&#x4F9B; POST &#x6570;&#x636E;&#x7684;&#x89E3;&#x6790;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;<strong>koa-body</strong>&#xFF0C;&#x6765;&#x89E3;&#x6790; POST &#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x5176;&#x5B9E;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x7684;&#x89E3;&#x6790;&#x4E2D;&#x95F4;&#x4EF6;&#x662F; koa-bodyparser&#xFF0C;&#x4F46;&#x662F;&#x540E;&#x9762;&#x8FD8;&#x6709;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E8E;&#x662F;&#x53C8;&#x51FA;&#x73B0;&#x4E86;&#x4E00;&#x4E2A; koa-multer&#x3002;&#x7136;&#x800C;&#xFF0C;&#x540E;&#x8005;&#x4F1A;&#x548C; koa-router &#x51FA;&#x73B0;&#x51B2;&#x7A81;&#x3002;&#x4E8E;&#x662F;&#xFF0C;koa-body &#x5C31;&#x8BDE;&#x751F;&#x4E86;&#xFF0C;&#x5B83;&#x89E3;&#x51B3;&#x4E86;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4E8E;&#x662F;&#x53EA;&#x9700;&#x8981;&#x8FD9;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x5373;&#x53EF;(<em>&#x5982;&#x679C;&#x60F3;&#x81EA;&#x5DF1;&#x5B9E;&#x9A8C;&#xFF0C;&#x5B8C;&#x6210;&#x4E00;&#x4E2A; koa-bodyparser &#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="http://www.ptbird.cn/koa2-body-parser-by-self.html" target="_blank">&#x535A;&#x5BA2;</a></em>)&#x3002;</p>
+<p>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5B89;&#x88C5; koa-body</p>
+<pre><code class="lang-bash">npm install koa-body
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x518D;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#x6211;&#x4EEC;&#x7684; app.js</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> koaBody = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-body&apos;</span>);
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa();
+
+app.use(koaBody());
+
+app.use(<span class="hljs-keyword">async</span> ctx =&gt; {
+  <span class="hljs-keyword">let</span> username = ctx.request.body.user;
+  <span class="hljs-keyword">let</span> password = ctx.request.body.psd;
+  ctx.body = {
+    username: username,
+    password: password
+  }
+});
+
+app.listen(<span class="hljs-number">3000</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Koa running at port 3000...&apos;</span>);
+});
+</code></pre>
+<p>&#x8FD9;&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528; <code>curl</code> &#x6765;&#x6A21;&#x62DF;&#x4E00;&#x4E0B; POST&#xFF0C;&#x5077;&#x4E2A;&#x61D2;&#x4E0D;&#x5199; axios &#x7684; JavaScript &#x4EE3;&#x7801;&#x3002;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../../assets/image/post.jpg" alt="POST"></p>
 
                                 
                                 </section>
@@ -548,14 +561,10 @@
 
             
                 
-                <a href="get.html" class="navigation navigation-prev " aria-label="Previous page: 3.1 GET">
+                <a href="get.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 3.1 GET">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="koa-body.html" class="navigation navigation-next " aria-label="Next page: 3.3 koa-body">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -564,7 +573,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.2 POST","level":"1.4.2","depth":2,"next":{"title":"3.3 koa-body","level":"1.4.3","depth":2,"path":"note/data/koa-body.md","ref":"note/data/koa-body.md","articles":[]},"previous":{"title":"3.1 GET","level":"1.4.1","depth":2,"path":"note/data/get.md","ref":"note/data/get.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"note/data/post.md","mtime":"2019-03-29T03:39:27.774Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T13:43:14.176Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.2 POST","level":"1.4.2","depth":2,"next":{"title":"4.文件服务","level":"1.5","depth":1,"ref":"","articles":[{"title":"4.1 静态文件","level":"1.5.1","depth":2,"path":"note/file/static.md","ref":"note/file/static.md","articles":[]},{"title":"4.2 文件上传/下载","level":"1.5.2","depth":2,"path":"note/file/upload.md","ref":"note/file/upload.md","articles":[]}]},"previous":{"title":"3.1 GET","level":"1.4.1","depth":2,"path":"note/data/get.md","ref":"note/data/get.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"note/data/post.md","mtime":"2019-04-01T10:09:04.752Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-01T10:10:19.828Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -572,6 +581,10 @@
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
