@@ -11,7 +11,6 @@
 * 3.数据请求
     * [3.1 GET](note/data/get.md)
     * [3.2 POST](note/data/post.md)
-    * [3.3 koa-body](note/data/koa-body.md)
 * 4.文件服务
     * [4.1 静态文件](note/file/static.md)
     * [4.2 文件上传/下载](note/file/upload.md)

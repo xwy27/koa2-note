@@ -26,11 +26,13 @@ function modelEngine(name) {
       <title>{{ title }}</title>
     </head>
     <body>
-      {% if index %}
+      <!-- markdown 转 html 会自动编译，所以这里进行了注释 -->
+      <!-- 复制后取消下文注释 -->
+      <!-- {% if index %}
       <h1>{{ title }}</h1>
       {% else %}
       <p>{{ title }}</p>
-      {% endif %}
+      {% endif %} -->
     </body>
     </html>
     ```
