@@ -34,8 +34,9 @@ sample 文件树如下：
       <title>{{ title }}</title>
     </head>
     <body>
-      <!-- markdown 转 html 会自动编译，所以这里进行了注释 -->
-      <!-- 复制后取消下文注释 -->
+      <!-- Comment because markdown render will interpret -->
+      <!-- model syntax as unrecognizable syntax in html -->
+      <!-- Replace the comment symbol below this line after pasting it -->
       <!-- {% if index %}
       <h1>{{ title }}</h1>
       {% else %}
@@ -52,7 +53,7 @@ sample 文件树如下：
 
     const app = new koa();
 
-    let env = nunjucks.configure('views'); // 模板文件路径
+    let env = nunjucks.configure('views'); // path to model files folder
 
     router.get('/', (ctx, next) => {
       ctx.response.body = env.render('index.html', {

@@ -107,7 +107,7 @@ const nunjucks = require('nunjucks');
 
 const app = new koa();
 
-let env = nunjucks.configure('views'); // 模板文件路径
+let env = nunjucks.configure('views'); // path to model file folder
 
 app.use(static('/static/', __dirname + '/static'));
 
@@ -131,23 +131,27 @@ app.listen(3000, () => {
 
 ## koa-static
 
-每次都自己写一个 static middleware，是一件很繁琐的事情。这个时候，我们就不用造轮子了，用别人写好的库：`koa2-static-middleware`。
+每次都自己写一个 static middleware，是一件很繁琐的事情。这个时候，我们就不用造轮子了，用别人写好的库：`koa-static`。**千万注意 koa-static 要在 koa-router 后面使用**，因为 koa-static 会拦截路由，这样你写的路由很可能会被 koa-static 处理而出现和你想象不符的情况。在 koa-static 源码中，如如下代码：
+```javascript
+// koa-static index.js
+if (ctx.method !== 'HEAD' && ctx.method !== 'GET') return
+// response is already handled
+if (ctx.body != null || ctx.status !== 404) return
+```
+非请求和已处理的请求会被它略过，所以，我们先处理路由，再交给 koa-static 是很安全的。
 
-就没有必要写一个 staticFile.js，直接更改 app.js(记得先安装库)：
+直接更改 app.js：
 
 ```javascript
 const koa = require('koa');
 const router = require('koa-router')();
-const serve = require('koa2-static-middleware');
+const static = require('koa-static');
 const path = require('path');
 const nunjucks = require('nunjucks');
 
 const app = new koa();
 
-let env = nunjucks.configure('views'); // 模板文件路径
-
-let static = serve(path.resolve(__dirname, 'static/'));
-router.get('/static/*', static);
+let env = nunjucks.configure('views'); // path to model file folder
 
 router.get('/', (ctx, next) => {
   ctx.response.body = env.render('index.html', {
@@ -156,6 +160,9 @@ router.get('/', (ctx, next) => {
 });
 
 app.use(router.routes());
+
+app.use(static(path.join( __dirname,  './static')));
+
 
 app.listen(3000, () => {
   console.log('Koa running at port 3000...');
