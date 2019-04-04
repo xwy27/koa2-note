@@ -14,6 +14,14 @@ function modelEngine(name) {
 
 这里介绍一个模板引擎：[nunjucks](https://mozilla.github.io/nunjucks/)。Nunjucks 由 Mozilla 开发的，可以运行在 node 环境。关于更具体的用法，大家自行查阅官方文档，这里给出一个简短的例子。
 
+sample 文件树如下：
+
+```
+├─views
+│  └─index.html
+└─app.js
+```
+
 1. 创建 views 文件夹
 2. 在 views 文件夹新建 index.html
     ```html
@@ -26,8 +34,9 @@ function modelEngine(name) {
       <title>{{ title }}</title>
     </head>
     <body>
-      <!-- markdown 转 html 会自动编译，所以这里进行了注释 -->
-      <!-- 复制后取消下文注释 -->
+      <!-- Comment because markdown render will interpret -->
+      <!-- model syntax as unrecognizable syntax in html -->
+      <!-- Replace the comment symbol below this line after pasting it -->
       <!-- {% if index %}
       <h1>{{ title }}</h1>
       {% else %}
@@ -44,10 +53,10 @@ function modelEngine(name) {
 
     const app = new koa();
 
-    let env = nunjucks.configure('views'); // 模板文件路径
+    let env = nunjucks.configure('views'); // path to model files folder
 
     router.get('/', (ctx, next) => {
-      ctx.response.body = env.render('index.html'， {
+      ctx.response.body = env.render('index.html', {
         title: 'Index',
         index: true
       });
