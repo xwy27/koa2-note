@@ -504,7 +504,66 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="koa2-note">koa2-note</h1>
-<p>A simple note for using koa2</p>
+<h2 id="&#x5E8F;&#x8A00;">&#x5E8F;&#x8A00;</h2>
+<p>&#x8FD9;&#x662F;&#x8BB0;&#x5F55;&#x6211;&#x5B66;&#x4E60;&#x4F7F;&#x7528; koa2 &#x7684;&#x7B14;&#x8BB0;&#xFF0C;&#x4E5F;&#x5E0C;&#x671B;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x66F4;&#x591A;&#x60F3;&#x8981;&#x5B66;&#x4E60; koa2 &#x7684;&#x4EBA;&#x3002;</p>
+<h2 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h2>
+<p>&#x4EC0;&#x4E48;&#x662F; koa2? <em>Next generation web framework for node.js</em>&#xFF0C;&#x8FD9;&#x662F; koa &#x56E2;&#x961F;&#x5BF9;&#x5B83;&#x7684;&#x5B9A;&#x4F4D;&#xFF0C;&#x4E0B;&#x4E00;&#x4EE3;&#x624E;&#x6839;&#x4E8E; node.js &#x7684; web &#x6846;&#x67B6;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E0B;&#x4E00;&#x4EE3;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x6709; express&#x3002;&#x4F46; koa &#x7684;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5F00;&#x53D1; express &#x7684;&#x56E2;&#x961F;&#x3002;&#x6240;&#x4EE5;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06; koa &#x770B;&#x4F5C;&#x662F; express &#x7684;&#x8FDB;&#x5316;&#x7248;&#x3002;</p>
+<p>&#x539F;&#x6765;&#x7684; express &#x7528;&#x6237;&#x53EF;&#x80FD;&#x4F1A;&#x95EE;&#xFF0C;koa &#x76F8;&#x8F83;&#x4E8E; express&#xFF0C;&#x7A76;&#x7ADF;&#x597D;&#x5728;&#x54EA;&#x91CC;&#xFF1F;&#x6309;&#x6211;&#x7684;&#x89C2;&#x70B9;&#x6765;&#x770B;&#xFF0C;&#x5B83;&#x597D;&#x5728;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#x3002;&#x7B2C;&#x4E00;&#xFF0C;koa &#x5229;&#x7528; async &#x4EE3;&#x66FF;&#x4E86;&#x56DE;&#x8C03;&#xFF0C;&#x907F;&#x514D;&#x4E86; express &#x53EF;&#x80FD;&#x4F1A;&#x5E26;&#x6765;&#x7684;&#x56DE;&#x8C03;&#x5730;&#x72F1;&#x3002;&#x4F60;&#x5F53;&#x7136;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x81EA;&#x5DF1;&#x518D;&#x5305;&#x88C5;&#x6216;&#x8005;&#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x6709;&#x5DF2;&#x7ECF;&#x5199;&#x597D;&#x800C;&#x4E14;&#x4F7F;&#x7528;&#x8D77;&#x6765;&#x4E60;&#x60EF;&#x76F8;&#x540C;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528;&#x5462;&#xFF1F;&#x7B2C;&#x4E8C;&#xFF0C;koa &#x6452;&#x5F03;&#x4E86; express &#x7684;&#x5197;&#x4F59;&#xFF0C;&#x5B83;&#x4E0D;&#x6346;&#x7ED1;&#x4EFB;&#x4F55;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x53EA;&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x5B83;&#x81EA;&#x5DF1;&#x5305;&#x88C5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8BA9;&#x6574;&#x4E2A;&#x6846;&#x67B6;&#x53D8;&#x5F97;&#x5341;&#x5206;&#x7CBE;&#x7B80;&#x3002;&#x636E;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F; koa &#x51FA;&#x73B0;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5927;&#x5BB6;&#x53D7;&#x591F;&#x4E86;&#x7B28;&#x91CD;&#xFF0C;&#x60F3;&#x8981;&#x7B80;&#x5355;&#x8F7B;&#x4FBF;&#x3002;</p>
+<p>&#x5E76;&#x6CA1;&#x6709;&#x4EBA;&#x8981;&#x6C42;&#x4F60;&#x653E;&#x5F03;&#x5176;&#x4ED6;&#x6846;&#x67B6;&#xFF0C;&#x53EA;&#x62E5;&#x62B1; koa&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x53EA;&#x8981;&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x5B66;&#x4E60; koa &#x80AF;&#x5B9A;&#x662F;&#x4EF6;&#x597D;&#x4E8B;&#x3002;&#x6280;&#x591A;&#x4E0D;&#x538B;&#x8EAB;&#xFF0C;&#x51B5;&#x4E14;&#x5B66;&#x8D77;&#x6765;&#x5F88;&#x7B80;&#x5355;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;koa &#x5B98;&#x65B9;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x5BF9;&#x4E8E;&#x5165;&#x95E8;&#x8005;&#x800C;&#x8A00;&#xFF0C;&#x4F1A;&#x96BE;&#x4EE5;&#x4E0A;&#x624B;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x8FD9;&#x672C;&#x7B14;&#x8BB0;&#x8BDE;&#x751F;&#x7684;&#x521D;&#x8877;&#x4E4B;&#x4E00;&#x3002;</p>
+<p>&#x5728;&#x5B8C;&#x6210;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53C2;&#x8003;&#x8FC7;&#x522B;&#x4EBA;&#x5BF9;&#x4E8E; koa &#x7684;&#x4E0A;&#x624B;&#x6587;&#x7AE0;&#x3002;&#x6709;&#x5F88;&#x591A;&#x5730;&#x65B9;&#x5176;&#x5B9E;&#x90FD;&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x4E5F;&#x5B58;&#x5728;&#x5DEE;&#x5F02;&#xFF0C;&#x6CA1;&#x6709;&#x8C01;&#x5BF9;&#x8C01;&#x9519;&#xFF0C;&#x770B;&#x4E2A;&#x4EBA;&#x4E60;&#x60EF;&#x800C;&#x5DF2;&#x3002;&#x5728;&#x5F00;&#x59CB;&#x52A8;&#x624B;&#x4E4B;&#x524D;&#xFF0C;&#x5F88;&#x5927;&#x4E00;&#x90E8;&#x5206;&#x539F;&#x56E0;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x5199;&#x4E0B; <a href="note/verify/token.html">5.3 token</a> &#xFF0C;<a href="note/struct/struct.html">7.1 &#x9879;&#x76EE;&#x7ED3;&#x6784;</a> &#x548C; <a href="note/test/test.html">8.1 Mocha/Chai/Supertest</a> &#x8FD9;&#x4E09;&#x4E2A;&#x5C0F;&#x8282;&#x3002;&#x8FD9;&#x4E09;&#x4E2A;&#x5C0F;&#x8282;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x662F;&#x6211;&#x5728;&#x7ED9;&#x5B9E;&#x9A8C;&#x5BA4;&#x4F7F;&#x7528; koa2 &#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x6613;&#x9879;&#x76EE;&#x65F6;&#xFF0C;&#x5B66;&#x4E60;&#x611F;&#x89E6;(<del>BUG</del>)&#x6700;&#x6DF1;(<del>&#x591A;</del>)&#x7684;&#x5730;&#x65B9;&#x3002;&#x8FD9;&#x4E5F;&#x9A71;&#x4F7F;&#x6211;&#x5C06;&#x4ED6;&#x4EEC;&#x90FD;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#x3002;</p>
+<h2 id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</h2>
+<ul>
+<li><a href="./">koa2-note</a></li>
+<li>1.&#x5FEB;&#x901F;&#x4E0A;&#x624B;<ul>
+<li><a href="note/start/helloworld.html">1.1 Hello World</a></li>
+<li><a href="note/start/codeInspect.html">1.2 &#x4EE3;&#x7801;&#x521D;&#x63A2;</a></li>
+</ul>
+</li>
+<li>2.&#x8DEF;&#x7531;<ul>
+<li><a href="note/router/custom.html">2.1 &#x81EA;&#x5236;&#x8DEF;&#x7531;</a></li>
+<li><a href="note/router/koa-router.html">2.2 koa-router</a></li>
+<li><a href="note/router/nunjucks.html">2.3 &#x6A21;&#x677F;&#x5F15;&#x64CE;</a></li>
+</ul>
+</li>
+<li>3.&#x6570;&#x636E;&#x8BF7;&#x6C42;<ul>
+<li><a href="note/data/get.html">3.1 GET</a></li>
+<li><a href="note/data/post.html">3.2 POST</a></li>
+</ul>
+</li>
+<li>4.&#x6587;&#x4EF6;&#x670D;&#x52A1;<ul>
+<li><a href="note/file/static.html">4.1 &#x9759;&#x6001;&#x6587;&#x4EF6;</a></li>
+<li><a href="note/file/upload.html">4.2 &#x6587;&#x4EF6;&#x4E0A;&#x4F20;/&#x4E0B;&#x8F7D;</a></li>
+</ul>
+</li>
+<li>5.&#x7528;&#x6237;&#x8BA4;&#x8BC1;<ul>
+<li><a href="note/verify/cookie.html">5.1 cookie</a></li>
+<li><a href="note/verify/session.html">5.2 session</a></li>
+<li><a href="note/verify/token.html">5.3 token</a></li>
+</ul>
+</li>
+<li>6.&#x6570;&#x636E;&#x5E93;<ul>
+<li><a href="note/database/mongodb.html">6.1 MongoDB</a></li>
+<li><a href="note/database/mysql.html">6.2 MySQL</a></li>
+</ul>
+</li>
+<li>7.&#x9879;&#x76EE;&#x91CD;&#x6784;<ul>
+<li><a href="note/struct/struct.html">7.1 &#x9879;&#x76EE;&#x7ED3;&#x6784;</a></li>
+</ul>
+</li>
+<li>8.&#x5355;&#x5143;&#x6D4B;&#x8BD5;<ul>
+<li><a href="note/test/test.html">8.1 Mocha/Chai/Supertest</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x5185;&#x5BB9;">&#x53C2;&#x8003;&#x5185;&#x5BB9;</h2>
+<ul>
+<li>koajs&#xFF0C;<a href="https://koajs.com/" target="_blank">koa doc</a></li>
+<li>&#x5ED6;&#x96EA;&#x5CF0;&#xFF0C;<a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434501579966ab03decb0dd246e1a6799dd653a15e1b000" target="_blank">koa &#x5165;&#x95E8;</a></li>
+<li>&#x5927;&#x6DF1;&#x6D77;&#xFF0C;<a href="https://chenshenhai.github.io/koa2-note/" target="_blank">koa-note</a></li>
+</ul>
+<h2 id="&#x5173;&#x4E8E;&#x4F5C;&#x8005;">&#x5173;&#x4E8E;&#x4F5C;&#x8005;</h2>
+<p><img style="max-width: 50px; max-height: 50px;" src="https://avatars0.githubusercontent.com/u/27471274?s=400&amp;u=a6ce2f0e709385117969efe4a11e0be1f2ae44f8&amp;v=4"></p>
+<p><a href="https://github.com/xwy27" target="_blank">xwy27</a></p>
 
                                 
                                 </section>
@@ -540,7 +599,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"koa2-note","level":"1.1","depth":1,"next":{"title":"1.快速上手","level":"1.2","depth":1,"ref":"","articles":[{"title":"1.1 Hello World","level":"1.2.1","depth":2,"path":"note/start/helloworld.md","ref":"note/start/helloworld.md","articles":[]},{"title":"1.2 代码初探","level":"1.2.2","depth":2,"path":"note/start/codeInspect.md","ref":"note/start/codeInspect.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-03-29T02:46:49.201Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T11:23:18.304Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"koa2-note","level":"1.1","depth":1,"next":{"title":"1.快速上手","level":"1.2","depth":1,"ref":"","articles":[{"title":"1.1 Hello World","level":"1.2.1","depth":2,"path":"note/start/helloworld.md","ref":"note/start/helloworld.md","articles":[]},{"title":"1.2 代码初探","level":"1.2.2","depth":2,"path":"note/start/codeInspect.md","ref":"note/start/codeInspect.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-04-05T04:05:41.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-05T04:10:21.000Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -548,6 +607,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
