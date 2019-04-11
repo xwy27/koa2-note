@@ -115,5 +115,7 @@ app.listen(3000, () => {
 ```
 
 同样可以使用 curl 测试查询结果。
+
 `curl http://localhost:3000/api/query-user -X POST "username=test&password=test"`
+
 `curl http://localhost:3000/api/query-user -X POST "username=t&password=test"`
