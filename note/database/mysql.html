@@ -506,6 +506,113 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="62-mysql">6.2 MySQL</h1>
+<p>MySQL &#x662F;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5B83;&#x662F;&#x6210;&#x719F;&#x5EA6;&#x8F83;&#x9AD8;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x9002;&#x7528;&#x8303;&#x56F4;&#x5F88;&#x5E7F;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x9762;&#x5BF9;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x6027;&#x80FD;&#x6709;&#x4E9B;&#x4E0D;&#x8DB3;&#x3002;</p>
+<h2 id="&#x5B89;&#x88C5;-mysql">&#x5B89;&#x88C5; MySQL</h2>
+<p>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5B89;&#x88C5; MySQL&#xFF1A;<a href="https://www.mysql.com/downloads/" target="_blank">https://www.mysql.com/downloads/</a> &#x3002;&#x5F53;&#x7136;&#xFF0C;&#x6211;&#x4EEC;&#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Docker &#x6765;&#x5B89;&#x88C5; MySQL&#xFF1A;<code>docker pull mysql</code>&#x3002;</p>
+<h2 id="&#x5B89;&#x88C5;-mysql-&#x6A21;&#x5757;">&#x5B89;&#x88C5; mysql &#x6A21;&#x5757;</h2>
+<pre><code class="lang-bash">npm install mysql
+</code></pre>
+<h2 id="&#x4EE3;&#x7801;&#x6837;&#x4F8B;">&#x4EE3;&#x7801;&#x6837;&#x4F8B;</h2>
+<p>&#x6211;&#x4EEC;&#x5229;&#x7528; MySQL &#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x521D;&#x59CB;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#xFF0C;&#x7136;&#x540E;&#x8BBF;&#x95EE;&#x67E5;&#x8BE2;&#x5E76;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-router&apos;</span>)();
+<span class="hljs-keyword">const</span> koaBody = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-body&apos;</span>);
+<span class="hljs-keyword">const</span> mysql = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mysql&apos;</span>);
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customSync</span>(<span class="hljs-params">promise</span>) </span>{
+  <span class="hljs-keyword">return</span> promise
+    .then(data =&gt; {
+    <span class="hljs-keyword">return</span> [<span class="hljs-literal">null</span>, data];
+  })
+    .catch(err =&gt; [err]);
+}
+
+<span class="hljs-comment">// database</span>
+<span class="hljs-keyword">const</span> pool = mysql.createPool({
+  host     : <span class="hljs-string">&apos;127.0.0.1&apos;</span>,
+  user     : <span class="hljs-string">&apos;root&apos;</span>,
+  password : <span class="hljs-string">&apos;123456&apos;</span>,
+  database : <span class="hljs-string">&apos;test_db&apos;</span>
+});
+
+<span class="hljs-keyword">let</span> query = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> sql, values </span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(( resolve, reject ) =&gt; {
+    pool.getConnection(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, connection</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) {
+        reject( err );
+      } <span class="hljs-keyword">else</span> {
+        connection.query(sql, values, (err, rows) =&gt; {
+          <span class="hljs-keyword">if</span> ( err ) {
+            reject( err );
+          } <span class="hljs-keyword">else</span> {
+            resolve( rows );
+          }
+          connection.release();
+        })
+      }
+    })
+  });
+}
+
+<span class="hljs-comment">// initial table</span>
+query(<span class="hljs-string">`
+  CREATE TABLE IF NOT EXISTS User
+  (username VARCHAR(200) NOT NULL,
+   password TEXT
+   PRIMARY KEY(username))`</span>)
+  .then(result =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Create user table.&apos;</span>)
+  })
+  .catch(error =&gt; {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&apos;Error create table.&apos;</span>)
+    <span class="hljs-built_in">console</span>.error(error);
+  });
+query(<span class="hljs-string">`
+  INSERT INTO User (username, password)
+  VALUES(&apos;test&apos;, &apos;test&apos;)`</span>))
+  .then(result =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Add test user.&apos;</span>);
+  })
+  .catch(err =&gt; {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&apos;Error add test user&apos;</span>);
+    <span class="hljs-built_in">console</span>.error(error);
+  });
+
+<span class="hljs-comment">// request data parser</span>
+app.use(koaBody());
+
+<span class="hljs-comment">// routers</span>
+router.post(<span class="hljs-string">&apos;/api/query-user&apos;</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; {
+  <span class="hljs-keyword">let</span> username = ctx.request.body.username;
+  <span class="hljs-keyword">let</span> password = ctx.request.body.password;
+  <span class="hljs-keyword">const</span> u = <span class="hljs-keyword">new</span> user({
+    username: username,
+    password: password,
+  });
+  <span class="hljs-keyword">let</span> [err, temp] = <span class="hljs-keyword">await</span> customAsync(query(
+    <span class="hljs-string">`SELECT username FROM User
+    WHERE username=&apos;<span class="hljs-subst">${username}</span>&apos; AND password=&apos;<span class="hljs-subst">${password}</span>&apos;`</span>
+  ));
+  <span class="hljs-keyword">if</span> (err) {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Error query <span class="hljs-subst">${username}</span>`</span>);
+    <span class="hljs-built_in">console</span>.error(err);
+    ctx.response.body = <span class="hljs-string">&apos;Error&apos;</span>;
+    <span class="hljs-keyword">return</span>;
+  }
+  ctx.response.body = temp;
+});
+
+app.use(router.routes());
+
+app.listen(<span class="hljs-number">3000</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Koa running at port 3000...&apos;</span>);
+});
+</code></pre>
+<p>&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; curl &#x6D4B;&#x8BD5;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x3002;
+<code>curl http://localhost:3000/api/query-user -X POST &quot;username=test&amp;password=test&quot;</code>
+<code>curl http://localhost:3000/api/query-user -X POST &quot;username=t&amp;password=test&quot;</code></p>
 
                                 
                                 </section>
@@ -545,7 +652,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"6.2 MySQL","level":"1.7.2","depth":2,"next":{"title":"7.项目重构","level":"1.8","depth":1,"ref":"","articles":[{"title":"7.1 项目结构","level":"1.8.1","depth":2,"path":"note/struct/struct.md","ref":"note/struct/struct.md","articles":[]}]},"previous":{"title":"6.1 MongoDB","level":"1.7.1","depth":2,"path":"note/database/mongodb.md","ref":"note/database/mongodb.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"note/database/mysql.md","mtime":"2019-03-29T03:39:27.818Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-05T04:10:21.000Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"6.2 MySQL","level":"1.7.2","depth":2,"next":{"title":"7.项目重构","level":"1.8","depth":1,"ref":"","articles":[{"title":"7.1 项目结构","level":"1.8.1","depth":2,"path":"note/struct/struct.md","ref":"note/struct/struct.md","articles":[]}]},"previous":{"title":"6.1 MongoDB","level":"1.7.1","depth":2,"path":"note/database/mongodb.md","ref":"note/database/mongodb.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"note/database/mysql.md","mtime":"2019-04-11T06:53:06.754Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-11T06:53:39.324Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -553,10 +660,6 @@
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
