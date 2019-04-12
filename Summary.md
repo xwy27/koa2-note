@@ -17,7 +17,7 @@
 * 5.用户认证
     * [5.1 cookie](note/verify/cookie.md)
     * [5.2 session](note/verify/session.md)
-    * [5.3 token](note/verify/token.md)
+    * [5.3 jwt](note/verify/token.md)
 * 6.数据库
     * [6.1 MongoDB](note/database/mongodb.md)
     * [6.2 MySQL](note/database/mysql.md)
